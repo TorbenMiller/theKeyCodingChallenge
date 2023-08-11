@@ -1,0 +1,4 @@
+curl -X GET https://www.thekey.academy/wp-json/wp/v2/posts
+
+
+curl -X GET https://www.internate.org/wp-json/wp/v2/posts

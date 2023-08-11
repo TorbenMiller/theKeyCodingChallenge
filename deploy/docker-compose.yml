@@ -1,0 +1,18 @@
+version: "3"
+services:
+    server:
+        container_name: thekey-server
+        build:
+            context: ..
+            dockerfile: ./deploy/server.Dockerfile
+        image: thekey-server:latest
+        ports:
+            - "4444:4444"
+    webapp:
+        container_name: thekey-webapp
+        build:
+            context: ..
+            dockerfile: ./deploy/webapp.Dockerfile
+        image: thekey-webapp:latest
+        ports:
+            - "80:80"
