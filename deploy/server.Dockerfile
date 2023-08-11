@@ -2,7 +2,8 @@ FROM node:18 as builder
 
 COPY server/ /app/server
 WORKDIR /app/server
-#RUN ls -al
+
+# Build for tests
 RUN yarn install
 
 # Lint
@@ -22,7 +23,5 @@ COPY --from=builder app/server/package.json /app
 COPY --from=builder app/server/build /app/build
 
 RUN yarn install --production
-
-RUN ls -al
 
 CMD node build/index.js

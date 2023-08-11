@@ -2,7 +2,7 @@
 
 ## Deploy
 
-You need to have [docker](https://docs.docker.com/get-docker/) installed.
+You need to have [docker](https://docs.docker.com/engine/install/) installed.
 
 1. Navigate to the `deploy` directory in your terminal:
 
