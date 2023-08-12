@@ -1,5 +1,5 @@
 import axios from "axios";
-import { WordPressPost, postApiResponse } from "./types";
+import { postApiResponse } from "./types";
 import { Parser } from "./Parser";
 import EventEmitter from "node:events";
 
@@ -13,8 +13,6 @@ export class Fetcher {
     private emitter: EventEmitter;
     private parser: Parser;
     private fetchTimer: NodeJS.Timeout | null = null;
-    private data: WordPressPost[] = [];
-    private firstTimeCall: number = 0;
 
     constructor(config: FetcherConfig, parser: Parser, emitter: EventEmitter) {
         this.config = config;
@@ -24,11 +22,7 @@ export class Fetcher {
 
     private async fetch() {
         const result: postApiResponse = await axios.get(this.config.url);
-        if (this.firstTimeCall < 2) {
-            this.data = result.data.splice(0, 5);
-            this.firstTimeCall++;
-        }
-        this.data = result.data;
+
         this.emitter.emit("newData", this.parser.parse(result.data));
     }
 
